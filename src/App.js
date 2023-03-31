@@ -3,13 +3,13 @@ import {  useState } from 'react';
 function App() {
   const [query, setQuery] = useState('')
   const [ response, setResponse] = useState('')
-
+  const [ key, setKey] = useState('')
   const { Configuration, OpenAIApi } = require("openai");
 
   
   async function get(){
     const configuration = new Configuration({
-      apiKey:'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',
+      apiKey:key,
     });
     const openai = new OpenAIApi(configuration);
     const {data} = await openai.createCompletion({
@@ -27,7 +27,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <br></br>
+        <p>Informe sua chave de API</p>
+        <input onChange={e =>setKey(e.target.value)}></input>
         <img src="https://sistema.selletiva.com.br/images/logo.svg" className="App-logo" alt="logo" />
         <input onChange={e =>setQuery(e.target.value)}></input>
         <button onClick={get}>Send</button>
