@@ -1,16 +1,17 @@
 import './App.css';
 import {  useState } from 'react';
 function App() {
-  const [query, setQuery] =useState('')
+  const [query, setQuery] = useState('')
   const [ response, setResponse] = useState('')
+  const [key, setKey] = useState('')
   const { Configuration, OpenAIApi } = require("openai");
-  const configuration = new Configuration({
-    apiKey: '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',
-  });
 
-  const openai = new OpenAIApi(configuration);
-
+  
   async function get(){
+    const configuration = new Configuration({
+      apiKey: key,
+    });
+    const openai = new OpenAIApi(configuration);
     const {data} = await openai.createCompletion({
       model: "text-babbage-001",
       prompt: query,
@@ -26,6 +27,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+      <input onChange={e =>setKey(e.target.value)}></input>
+        <br></br>
         <img src="https://sistema.selletiva.com.br/images/logo.svg" className="App-logo" alt="logo" />
         <input onChange={e =>setQuery(e.target.value)}></input>
         <button onClick={get}>Send</button>
