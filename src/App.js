@@ -5,7 +5,7 @@ function App() {
   const [ response, setResponse] = useState('')
   const { Configuration, OpenAIApi } = require("openai");
   const configuration = new Configuration({
-    apiKey: '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',
+    apiKey: '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',
   });
 
   const openai = new OpenAIApi(configuration);
